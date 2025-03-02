@@ -41,7 +41,7 @@ This project is a FastAPI application that performs a load test on a payment gat
 ### Load Test Endpoint
 
 **URL:** `/api/load-test`
-        http://127.0.0.1:8002/api/load-test?validation_token=valid_token_123
+        http://127.0.0.1:9090/metrics?validation_token=valid_token_123
 **Method:** `GET`
 
 **Query Parameters:**
