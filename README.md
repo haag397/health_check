@@ -8,8 +8,6 @@ This project is a FastAPI application that performs a load test on a payment gat
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
-- [Configuration](#configuration)
-- [License](#license)
 
 ## Installation
 
@@ -59,7 +57,7 @@ This project is a FastAPI application that performs a load test on a payment gat
     "start_time": "2023-04-01T12:00:00",
     "last_request_time": "2023-04-01T12:01:00"
   }
-  
+
 - **Error (500 Internal server error):**
   ```json
     {
