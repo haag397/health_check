@@ -59,3 +59,15 @@ This project is a FastAPI application that performs a load test on a payment gat
     "start_time": "2023-04-01T12:00:00",
     "last_request_time": "2023-04-01T12:01:00"
   }
+  
+- **Error (500 Internal server error):**
+  ```json
+    {
+    "detail": {
+        "error": "GetToken API failed",
+        "status_code": 503,
+        "successful_requests_before_error": 62,
+        "start_time": "2025-03-02T11:26:59.172321",
+        "last_request_time": "2025-03-02T11:27:23.970569"
+    }
+    }
