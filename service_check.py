@@ -102,7 +102,7 @@ async def send_payment_request(client, unique_invoice, callback_url, amount, inv
     # *If we get here, both requests were successful
     return {"success": True}
 
-@app.get("/api/load-test", response_model=SuccessResponse)
+@app.get("/metrics", response_model=SuccessResponse)
 async def run_load_test(validation_token: str = Depends(validate_token)):
     """
     Runs a load test against the payment gateway APIs
@@ -164,4 +164,4 @@ async def run_load_test(validation_token: str = Depends(validate_token)):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=9090)
