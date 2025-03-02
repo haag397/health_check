@@ -1,11 +1,12 @@
 import asyncio
 import httpx
 import time
-import json
+# import json
 from fastapi import FastAPI, Query, HTTPException, Depends
 from pydantic import BaseModel
-from typing import Dict, List, Optional
+# from typing import Dict, List, Optional
 from itertools import count
+from datetime import datetime
 
 app = FastAPI(title="Payment Gateway API Service")
 
@@ -33,7 +34,8 @@ class ErrorResponse(BaseModel):
     status_code: int
     invoice_number: str
     successful_requests_before_error: int
-
+    start_time: str
+    last_request_time: str
 class SuccessResponse(BaseModel):
     message: str
     total_successful_requests: int
@@ -86,7 +88,6 @@ async def send_payment_request(client, unique_invoice, callback_url, amount, inv
         return {
             "error": f"Error parsing response: {str(e)}",
             "status_code": get_token_response.status_code,
-            "invoice_number": unique_invoice
         }
     
     # Step 2: Use Token at Redirect URL
@@ -98,7 +99,6 @@ async def send_payment_request(client, unique_invoice, callback_url, amount, inv
         return {
             "error": "Redirect API failed",
             "status_code": redirect_response.status_code,
-            "invoice_number": unique_invoice
         }
     
     # If we get here, both requests were successful
@@ -120,14 +120,16 @@ async def run_load_test(validation_token: str = Depends(validate_token)):
     invoice_date = DEFAULT_INVOICE_DATE
     
     successful_requests = 0
+    start_time = datetime.now().isoformat()
+    last_request_time = None
     
     async with httpx.AsyncClient() as client:
-        # Calculate total requests to make
+        # * Calculate total requests to make
         total_planned_requests = requests_per_minute * duration_minutes
         
         for _ in range(total_planned_requests):
             unique_invoice = generate_unique_invoice()
-            
+            last_request_time = datetime.now().isoformat()
             result = await send_payment_request(
                 client, 
                 unique_invoice, 
@@ -136,15 +138,16 @@ async def run_load_test(validation_token: str = Depends(validate_token)):
                 invoice_date
             )
             
-            # If error occurred, return immediately
+            # * If error occurred, return immediately
             if "error" in result:
                 raise HTTPException(
                     status_code=500,
                     detail={
                         "error": result["error"],
                         "status_code": result["status_code"],
-                        "invoice_number": result["invoice_number"],
-                        "successful_requests_before_error": successful_requests
+                        "successful_requests_before_error": successful_requests,
+                        "start_time": start_time,
+                        "last_request_time": last_request_time
                     }
                 )
             
@@ -160,9 +163,6 @@ async def run_load_test(validation_token: str = Depends(validate_token)):
         total_successful_requests=successful_requests
     )
 
-@app.get("/")
-async def root():
-    return {"message": "Payment Gateway API Service is running"}
 
 if __name__ == "__main__":
     import uvicorn
