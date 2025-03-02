@@ -15,13 +15,13 @@ This project is a FastAPI application that performs a load test on a payment gat
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/your-username/payment-gateway-api-service.git
-    cd payment-gateway-api-service
+    git clone https://github.com/haag397/health_check.git
+    cd health_check
     ```
 
 2. Create and activate a virtual environment:
     ```sh
-    python -m venv venv
+    python3 -m venv venv
     source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
     ```
 
@@ -34,7 +34,8 @@ This project is a FastAPI application that performs a load test on a payment gat
 
 1. Start the FastAPI application:
     ```sh
-    uvicorn main:app --host 0.0.0.0 --port 8000
+    uvicorn service_check:app --host 0.0.0.0 --port 8000
+    or only run python3 service_check.py
     ```
 
 ## API Endpoints
