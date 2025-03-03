@@ -24,7 +24,7 @@ DEFAULT_INVOICE_DATE = "1403-11-30"
 invoice_counter = count(start=int(time.time()))
 
 # *Valid validation tokens (in a real app, this would be in a secure database)
-VALID_VALIDATION_TOKENS = ["valid_token_123", "test_token_456"]
+VALID_VALIDATION_TOKENS = "K2BucfWFZk9cUBgVdtbPR4FGPd2ep71OWKEgK6FOxRg"
 
 # *Models
 class ErrorResponse(BaseModel):
@@ -44,7 +44,7 @@ def generate_unique_invoice():
 
 async def validate_token(validation_token: str = Query(..., description="Validation token required for API access")):
     """Validate the incoming token before processing any requests"""
-    if validation_token not in VALID_VALIDATION_TOKENS:
+    if validation_token != VALID_VALIDATION_TOKENS:
         raise HTTPException(status_code=401, detail="Invalid validation token")
     return validation_token
 

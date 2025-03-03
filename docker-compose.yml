@@ -1,0 +1,14 @@
+
+services:
+  payment-gateway-api:
+    container_name: container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - .:/app  # Bind mount for live development (optional)
+    restart: unless-stopped

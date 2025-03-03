@@ -16,37 +16,26 @@ This project is a FastAPI application that performs a load test on a payment gat
     git clone https://github.com/haag397/health_check.git
     cd health_check
     ```
-
-2. Create and activate a virtual environment:
+2. Buid docker image:
     ```sh
-    python3 -m venv venv
-    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-    ```
-
-3. Install the required packages:
-    ```sh
-    pip install -r requirements.txt
+    docker-compose up --build -d
     ```
 
 ## Usage
-
-1. Start the FastAPI application:
+1. up project:
     ```sh
-    uvicorn service_check:app --host 0.0.0.0 --port 8000
-    or only run python3 service_check.py
+    docker-compose up
     ```
-
 ## API Endpoints
 
 ### Load Test Endpoint
 
-**URL:** `/api/load-test`
-        http://127.0.0.1:9090/metrics?validation_token=valid_token_123
+**URL:** `/metrics`
+        curl -X GET "http://localhost/metrics?validation_token=token"
 **Method:** `GET`
 
 **Query Parameters:**
 - `validation_token` (required): A validation token for API access.
-    sample set token in code ["valid_token_123", "test_token_456"]
 
 **Response:**
 - **Success (200 OK):**
