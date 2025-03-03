@@ -31,7 +31,8 @@ This project is a FastAPI application that performs a load test on a payment gat
 ### Load Test Endpoint
 
 **URL:** `/metrics`
-        curl -X GET "http://localhost/metrics?validation_token=token"
+        curl -X GET "http://localhost:9090/metrics?validation_token=token"
+
 **Method:** `GET`
 
 **Query Parameters:**
