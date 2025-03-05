@@ -18,7 +18,7 @@ This project is a FastAPI application that performs a load test on a payment gat
     ```
 2. Buid docker image:
     ```sh
-    docker-compose up --build -d
+    docker-compose build --no-cache
     ```
 
 ## Usage
