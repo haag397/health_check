@@ -122,16 +122,3 @@ This project is a FastAPI application that performs a load test on a payment gat
   # HELP payment_api_avg_latency Average latency of requests (seconds)
   # TYPE payment_api_avg_latency gauge
   payment_api_avg_latency 0.29139876074907256
-
-
-- **Error (500 Internal server error):**
-  ```json
-    {
-    "detail": {
-        "error": "GetToken API failed",
-        "status_code": 503,
-        "successful_requests_before_error": 62,
-        "start_time": "2025-03-02T11:26:59.172321",
-        "last_request_time": "2025-03-02T11:27:23.970569"
-    }
-    }
