@@ -1,12 +1,14 @@
 
 services:
-  payment-gateway-api:
-    container_name: container
+  gateway-check:
+    container_name: health_check
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "9090:9090"
+    env_file:
+      - .env
     environment:
       - PYTHONUNBUFFERED=1
     volumes:

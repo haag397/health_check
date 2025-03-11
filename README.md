@@ -18,13 +18,13 @@ Send request one time per minutes and save failed log in failed_requests.log.
     ```
 2. Buid docker image:
     ```sh
-    docker-compose build --no-cache
+    docker compose build --no-cache
     ```
 
 ## Usage
 1. up project:
     ```sh
-    docker-compose up
+    docker compose up
     ```
 ## API Endpoints
 
