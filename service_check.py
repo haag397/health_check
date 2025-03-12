@@ -361,8 +361,6 @@ app = FastAPI(title="Payment Gateway API Service with Metrics", lifespan=lifespa
 async def get_metrics(validation_token: str = Query(None, alias="validation_token")):
     """Return the most recent metrics only if the validation token matches VALIDATION_TOKEN."""
     global metrics_data, last_test_run_time
-    print(PROVIDER_TOKEN)
-    print(VALIDATION_TOKEN)
     # *Check if the validation token is correct
     if validation_token != VALIDATION_TOKEN:
         raise HTTPException(status_code=401, detail="Unauthorized: Invalid validation token")
